@@ -12,3 +12,9 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     middle_name = models.CharField(max_length=20)
+    address = models.CharField(max_length=200)
+    postal_code = models.CharField(max_length=20)
+    band_name = models.CharField(max_length=100)
+    venue_name = models.CharField(max_length=100)
+    is_band = models.BooleanField(default=False)
+    is_venue = models.BooleanField(default=False)
