@@ -25,11 +25,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
             "email",
             "first_name",
             "last_name",
-            "middle_name",
-            "address",
             "postal_code",
-            "band_name",
-            "venue_name",
             "is_band",
             "is_venue",
         )
@@ -41,11 +37,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
             email=validated_data["email"],
             first_name=validated_data["first_name"],
             last_name=validated_data["last_name"],
-            middle_name=validated_data["middle_name"],
-            address=validated_data["address"],
             postal_code=validated_data["postal_code"],
-            band_name=validated_data["band_name"],
-            venue_name=validated_data["venue_name"],
             is_band=validated_data["is_band"],
             is_venue=validated_data["is_venue"]
             # If added new columns through the User model, add them in this
