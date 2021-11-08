@@ -1,7 +1,9 @@
-from rest_framework import serializers
+from rest_framework import fields, serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth import get_user_model
+from .models import FollowingVenues, Venue, Band, FollowingBands
+
 
 User = get_user_model()
 
@@ -47,3 +49,27 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
+class BandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Band
+        fields = ["id", "user_id", "band_name", "song_to_display"]
+
+
+class VenueSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Venue
+        fields = ["id", "user_id", "venue_name", "address"]
+
+
+class FollowingBandsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FollowingBands
+        fields = ["id", "user_id", "band_id"]
+
+
+class FollowingVenuesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FollowingVenues
+        fields = ["id", "user_id", "venue_id"]

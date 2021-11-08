@@ -14,3 +14,26 @@ class User(AbstractUser):
     postal_code = models.CharField(max_length=20)
     is_band = models.BooleanField(default=False)
     is_venue = models.BooleanField(default=False)
+    profile_img = models.CharField(max_length=200)
+
+
+class Band(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    band_name = models.CharField(max_length=100)
+    song_to_display = models.CharField(max_length=200)
+
+
+class Venue(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    venue_name = models.CharField(max_length=100)
+    address = models.CharField(max_length=200)
+
+
+class FollowingBands(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    band_id = models.ForeignKey(Band, on_delete=models.CASCADE)
+
+
+class FollowingVenues(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    venue_id = models.ForeignKey(Venue, on_delete=models.CASCADE)

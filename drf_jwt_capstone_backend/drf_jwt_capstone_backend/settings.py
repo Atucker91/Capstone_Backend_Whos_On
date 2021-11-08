@@ -41,9 +41,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "authentication.apps.AuthenticationConfig",
     "corsheaders",
-    "attendees.apps.AttendeesConfig",
-    "bands.apps.BandsConfig",
-    "venues.apps.VenuesConfig",
 ]
 
 MIDDLEWARE = [
