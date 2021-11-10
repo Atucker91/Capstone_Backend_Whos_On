@@ -27,7 +27,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
             "email",
             "first_name",
             "last_name",
-            "postal_code",
+            "city",
             "is_band",
             "is_venue",
         )
@@ -39,7 +39,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
             email=validated_data["email"],
             first_name=validated_data["first_name"],
             last_name=validated_data["last_name"],
-            postal_code=validated_data["postal_code"],
+            city=validated_data["city"],
             is_band=validated_data["is_band"],
             is_venue=validated_data["is_venue"]
             # If added new columns through the User model, add them in this
@@ -54,13 +54,13 @@ class RegistrationSerializer(serializers.ModelSerializer):
 class BandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Band
-        fields = ["id", "user_id", "band_name", "song_to_display"]
+        fields = ["id", "user_id", "band_name", "song_to_display", "city"]
 
 
 class VenueSerializer(serializers.ModelSerializer):
     class Meta:
         model = Venue
-        fields = ["id", "user_id", "venue_name", "address"]
+        fields = ["id", "user_id", "venue_name", "city"]
 
 
 class FollowingBandsSerializer(serializers.ModelSerializer):
