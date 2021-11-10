@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth import get_user_model
-from .models import Venue, Band, FollowingBands, FollowingVenues
+from .models import Venue, Band, FollowingBands, FollowingVenues, User
 from .serializers import (
     RegistrationSerializer,
     BandSerializer,
@@ -46,6 +46,15 @@ def create_venue(request):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_user(request, user_id):
+    print(user_id)
+    user = User.objects.get(id=user_id)
+    serializer = RegistrationSerializer(user)
+    return Response(serializer.data)
 
 
 @api_view(["GET"])

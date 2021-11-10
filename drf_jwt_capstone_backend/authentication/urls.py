@@ -8,12 +8,14 @@ from .views import (
     create_venue_follow,
     get_all_bands,
     get_all_venues,
+    get_user,
 )
 
 urlpatterns = [
     path("login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("login/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("register/", RegisterView.as_view(), name="register"),
+    path("get_user/<int:user_id>/", get_user),
     path("create_band/", create_band),
     path("create_venue/", create_venue),
     path("get_all_bands/", get_all_bands),
