@@ -38,3 +38,9 @@ class FollowingBands(models.Model):
 class FollowingVenues(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     venue_id = models.ForeignKey(Venue, on_delete=models.CASCADE)
+
+
+class Schedule(models.Model):
+    band_id = models.ForeignKey(Band, on_delete=models.CASCADE)
+    venue_id = models.ForeignKey(Venue, on_delete=models.CASCADE)
+    date = models.DateTimeField(null=True, blank=True)

@@ -9,6 +9,7 @@ from .views import (
     get_all_bands,
     get_all_venues,
     get_followed_bands,
+    get_followed_venues,
     get_user,
 )
 
@@ -24,4 +25,5 @@ urlpatterns = [
     path("follow_band/", create_band_follow),
     path("follow_venue/", create_venue_follow),
     path("get_followed_bands/<int:user_id>/", get_followed_bands),
+    path("get_followed_venues/<int:user_id>/", get_followed_venues),
 ]

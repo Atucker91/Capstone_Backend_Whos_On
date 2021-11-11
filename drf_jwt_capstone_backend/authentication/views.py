@@ -100,19 +100,32 @@ def create_venue_follow(request):
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def get_followed_bands(request, user_id):
-    print(user_id)
 
     bands = []
     followedBands = []
     followedBands = FollowingBands.objects.filter(user_id=user_id)
-    print(followedBands)
+
     for fband in followedBands:
         bandId = fband.band_id_id
-        print(bandId)
         band = Band.objects.get(id=bandId)
-        print(band)
         bands.append(band)
-        print(bands)
 
     serializer = BandSerializer(bands, many=True)
+    return Response(serializer.data)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_followed_venues(request, user_id):
+
+    venues = []
+    followedVenues = []
+    followedVenues = FollowingVenues.objects.filter(user_id=user_id)
+
+    for fvenue in followedVenues:
+        venueId = fvenue.venue_id_id
+        venue = Venue.objects.get(id=venueId)
+        venues.append(venue)
+
+    serializer = VenueSerializer(venues, many=True)
     return Response(serializer.data)
