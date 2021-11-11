@@ -95,3 +95,24 @@ def create_venue_follow(request):
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_followed_bands(request, user_id):
+    print(user_id)
+
+    bands = []
+    followedBands = []
+    followedBands = FollowingBands.objects.filter(user_id=user_id)
+    print(followedBands)
+    for fband in followedBands:
+        bandId = fband.band_id_id
+        print(bandId)
+        band = Band.objects.get(id=bandId)
+        print(band)
+        bands.append(band)
+        print(bands)
+
+    serializer = BandSerializer(bands, many=True)
+    return Response(serializer.data)
