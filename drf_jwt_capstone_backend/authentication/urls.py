@@ -11,6 +11,7 @@ from .views import (
     get_followed_bands,
     get_followed_venues,
     get_user,
+    make_show_date,
 )
 
 urlpatterns = [
@@ -26,4 +27,5 @@ urlpatterns = [
     path("follow_venue/", create_venue_follow),
     path("get_followed_bands/<int:user_id>/", get_followed_bands),
     path("get_followed_venues/<int:user_id>/", get_followed_venues),
+    path("make_show_date/", make_show_date),
 ]

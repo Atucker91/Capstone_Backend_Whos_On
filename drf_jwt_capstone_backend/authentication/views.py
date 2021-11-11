@@ -9,6 +9,7 @@ from .models import Venue, Band, FollowingBands, FollowingVenues, User
 from .serializers import (
     RegistrationSerializer,
     BandSerializer,
+    ScheduleSerializer,
     VenueSerializer,
     FollowingVenuesSerializer,
     FollowingBandsSerializer,
@@ -129,3 +130,14 @@ def get_followed_venues(request, user_id):
 
     serializer = VenueSerializer(venues, many=True)
     return Response(serializer.data)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def make_show_date(request):
+    if request.method == "POST":
+        serializer = ScheduleSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
