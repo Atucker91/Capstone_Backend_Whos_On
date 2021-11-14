@@ -22,12 +22,16 @@ class Band(models.Model):
     band_name = models.CharField(max_length=100)
     song_to_display = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
+    img = models.CharField(max_length=200)
+    about = models.CharField(max_length=2000)
 
 
 class Venue(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     venue_name = models.CharField(max_length=100)
     city = models.CharField(max_length=100)
+    img = models.CharField(max_length=200)
+    about = models.CharField(max_length=2000)
 
 
 class FollowingBands(models.Model):
