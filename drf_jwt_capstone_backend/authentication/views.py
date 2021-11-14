@@ -158,3 +158,11 @@ def get_logged_in_band(request, id):
     band = Band.objects.get(user_id=id)
     serializer = BandSerializer(band)
     return Response(serializer.data)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_logged_in_venue(request, id):
+    venue = Venue.objects.get(user_id=id)
+    serializer = VenueSerializer(venue)
+    return Response(serializer.data)
