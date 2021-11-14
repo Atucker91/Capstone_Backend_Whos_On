@@ -150,3 +150,11 @@ def get_schedule(request):
     schedule = Schedule.objects.all()
     serializer = ScheduleSerializer(schedule, many=True)
     return Response(serializer.data)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_logged_in_band(request, id):
+    band = Band.objects.get(user_id=id)
+    serializer = BandSerializer(band)
+    return Response(serializer.data)
