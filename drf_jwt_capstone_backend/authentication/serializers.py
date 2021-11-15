@@ -54,13 +54,21 @@ class RegistrationSerializer(serializers.ModelSerializer):
 class BandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Band
-        fields = ["id", "user_id", "band_name", "song_to_display", "city"]
+        fields = [
+            "id",
+            "user_id",
+            "band_name",
+            "song_to_display",
+            "city",
+            "img",
+            "about",
+        ]
 
 
 class VenueSerializer(serializers.ModelSerializer):
     class Meta:
         model = Venue
-        fields = ["id", "user_id", "venue_name", "city"]
+        fields = ["id", "user_id", "venue_name", "city", "img", "about"]
 
 
 class FollowingBandsSerializer(serializers.ModelSerializer):
