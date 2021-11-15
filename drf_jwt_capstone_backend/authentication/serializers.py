@@ -86,4 +86,4 @@ class FollowingVenuesSerializer(serializers.ModelSerializer):
 class ScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Schedule
-        fields = ["id", "band_id", "venue_id", "date"]
+        fields = ["id", "band_id", "venue_id", "date", "month", "day", "year", "time"]

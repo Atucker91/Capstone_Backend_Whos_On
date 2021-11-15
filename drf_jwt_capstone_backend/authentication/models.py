@@ -48,3 +48,7 @@ class Schedule(models.Model):
     band_id = models.ForeignKey(Band, on_delete=models.CASCADE)
     venue_id = models.ForeignKey(Venue, on_delete=models.CASCADE)
     date = models.DateTimeField(null=True, blank=True)
+    month = models.CharField(max_length=50)
+    day = models.CharField(max_length=50)
+    year = models.CharField(max_length=50)
+    time = models.CharField(max_length=50)
